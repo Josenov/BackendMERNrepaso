@@ -9,6 +9,7 @@ let schema = new Schema({
     name:{type:String, required:true},
     country:{type:String, required:true},
     description:{type:String, required:true},
+    user:{type:Types.ObjectId, ref:'users'}
 }, {
     timestamps: true //con esto mongo asigna una fecha de carga y modificacion en la bd
 })

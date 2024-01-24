@@ -20,7 +20,7 @@ const controller = {
         
         try {
             
-            const cities = await City.find(queries)
+            const cities = await City.find(queries).populate('user')
 
             if(cities.length > 0){
                 return res.status(200).json({
@@ -49,10 +49,19 @@ const controller = {
         try {
             const oneCity = await City.findById(req.params.id)
 
-            return res.status(200).json({
-                success:true,
-                oneCity:oneCity
+            if(oneCity){
+                return res.status(200).json({
+                    success:true,
+                    oneCity:oneCity
+                })
+            }
+
+            return res.status(404).json({
+                success:false,
+                message: "No se encontro la ciudad solicitada por ID" 
             })
+
+            
             
         } catch (error) {
             return res.status(500).json({
