@@ -47,7 +47,7 @@ const controller = {
     
     getCityById: async (req, res) =>{
         try {
-            const oneCity = await City.findById(req.params.id)
+            const oneCity = await City.findById(req.params.id).populate('user')
 
             if(oneCity){
                 return res.status(200).json({
@@ -92,6 +92,42 @@ const controller = {
             
         }
         
+    },
+
+    updateCity: async (req, res)=>{
+        try {
+            await City.updateOne({_id:req.params.id},req.body )
+
+            return res.status(201).json({
+                success:true,
+                message:'Ciudad editada correctamente!'
+            })
+
+        } catch (error) {
+            return res.status(500).json({
+                success:false,
+                message:'Error al editar ciudad!'
+        })
+            
+        }
+    },
+
+    deleteCity: async (req, res)=>{
+        try {
+            await City.deleteOne({_id:req.params.id})
+            return res.status(201).json({
+                success:true,
+                message:'Ciudad eliminada correctamente!'
+            })
+            
+        } catch (error) {
+            return res.status(500).json({
+                success:false,
+                message:'Error al eliminar ciudad!'
+        })
+            
+        }
+
     },
     
 
