@@ -10,7 +10,8 @@ let schema = new Schema({
     country:{type:String, required:true},
     image:{type:String, required:true},
     description:{type:String, required:true},
-    user:{type:Types.ObjectId, ref:'users'}
+    user:{type:Types.ObjectId, ref:'users'},
+    travelCompany:{type:Types.ObjectId, ref:'travelCompanies'}
 }, {
     timestamps: true //con esto mongo asigna una fecha de carga y modificacion en la bd
 })

@@ -4,9 +4,13 @@ let collection = 'users';
 
 let schema = new Schema({
     name:{type:String, required:true},
-    image:{type:String},
     email:{type:String, required:true},
     password:{type:String, required:true},
+    image:{type:String},
+    online:{type:Boolean, default:false},
+    verified:{type:Boolean, default:true},
+    verified_code:{type:String}
+    
 }, {
     timestamps: true //con esto mongo asigna una fecha de carga y modificacion en la bd
 })

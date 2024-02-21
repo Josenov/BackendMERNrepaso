@@ -16,11 +16,18 @@ const controller = {
     
             queries.country = req.query.country
         }
-
         
         try {
+
+            let cities;
+
+            if(req.query.travelCompany === "true"){
+                cities = await City.find(queries).populate('travelCompany').populate('user')
+            } else {
+                cities = await City.find(queries);
+            }
             
-            const cities = await City.find(queries).populate('user')
+            
 
             if(cities.length > 0){
                 return res.status(200).json({
