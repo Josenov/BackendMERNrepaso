@@ -27,3 +27,21 @@ export const createUserSchema = Joi.object({
         'any.required': 'URL no valida'
     })
 })
+
+export const signInUserSchema = Joi.object({
+    email:Joi.string().required().email({
+        minDomainSegments:2
+    })
+    .messages({
+        'any.required': 'El email es obligatorio'
+    }),
+    password:Joi.string().required()
+    .min(6)
+    .max(20)
+    .alphanum()
+    .messages({
+        'any.required': 'Contraseña de 6 a 20 caracteres obligatorio'
+    })
+    
+})
+

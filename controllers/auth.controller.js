@@ -97,6 +97,7 @@ const controller = {
             }
 
             user.online=true;
+            await user.save();
 
             const token = jwt.sign(
                 {
